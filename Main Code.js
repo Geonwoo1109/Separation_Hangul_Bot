@@ -22,8 +22,14 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
 if (msg.startsWith ("..큰글씨 ")) {
 
    try {
-     var a = msg.substr(6).normalize("NFD").split("");
-     replier.reply (a[0] + a[2] + a[4] + big);
+     var Msg = msg.substr(6);
+     var a = Msg.normalize("NFD").split("");
+     var add = [];
+     for (i=0; i<Msg.length; i++) {
+       add.push(a[i*2]);
+     }
+     replier.reply(add.join("") + big);
+     //replier.reply (a[0] + a[2] + a[4] + big);
    
    } catch (e) {
      replier.reply (e);
